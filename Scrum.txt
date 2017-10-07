@@ -5,8 +5,8 @@ Sábado
 
 Tareas peques 
 -Controles de Personaje -> Blanca
-	Movimiento sin alterar
-	Movimiento to locooooh
+	Movimiento sin alterar (solo queda mejorar salto)
+	Movimiento to locooooh 									DONE
 	Logic not found, your character has gone mad
 	/*Colisiones con cosos*/
 

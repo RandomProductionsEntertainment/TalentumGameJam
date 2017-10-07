@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour {
     float maxY;
     public float maxJumpHeight;
     bool maxReached = false;
-    public int direction;
+    private int direction;
 
     // Use this for initialization
     void Start()
