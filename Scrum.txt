@@ -1,0 +1,28 @@
+Sábado
+-Controles personaje (teléfono escacharrado)
+-Coso procedural
+-GUI
+
+Tareas peques 
+-Controles de Personaje -> Blanca
+	Movimiento sin alterar
+	Movimiento to locooooh
+	Logic not found, your character has gone mad
+	/*Colisiones con cosos*/
+
+-Coso Procedural -> Miky
+	PAAAACAAAAAAA
+	PAAAACAAAAAAA
+	PAAAACAAAAAAA
+	PAAAACAAAAAAA
+	PAAAACAAAAAAA
+	PAAAACAAAAAAA
+	PAAAACAAAAAAA
+	PAAAACAAAAAAA
+	PAAAACAAAAAAA
+	PAAAACAAAAAAA
+
+-GUI -> Blanca
+	Barra/círculo de vida
+	Rosa de los vientos
+	Botón pa abrir dat menu
