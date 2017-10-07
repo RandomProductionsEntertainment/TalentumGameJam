@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/pruebaProcedural.unity
+- path: Assets/Scenes/pruebaProcedural.unity
   isLoaded: 1
   isActive: 1
