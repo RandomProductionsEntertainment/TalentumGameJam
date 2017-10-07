@@ -14,7 +14,7 @@ public class FloorSpawner : MonoBehaviour {
 	
     void spawn()
     {
-        Instantiate(floor, transform.position, Quaternion.identity);
+        Instantiate(floor, new Vector2 (transform.position.x, -4.02f), Quaternion.identity);
         Invoke("spawn", 1.5f);
     }
 	// Update is called once per frame
