@@ -14,45 +14,9 @@ public class SoundManager : MonoBehaviour {
     private bool bossBattle = false;
     private bool bossBattleCall = false;
     private bool gameplay = false;
-    EvoTree<string, ArrayList> musicSoundList;
-
+    ArrayList fxSoundList;
     ArrayList themeSounds;
 
-    public bool GamePlay
-    {
-        get
-        {
-            return gameplay;
-        }
-        set
-        {
-            gameplay = value;
-        }
-    }
-
-    public bool BossBattle
-    {
-        get
-        {
-            return bossBattle;
-        }
-        set
-        {
-            bossBattle = value;
-        }
-    }
-
-    public bool BossBattleCall
-    {
-        get
-        {
-            return bossBattleCall;
-        }
-        set
-        {
-            bossBattleCall = value;
-        }
-    }
 
     // Use this for initialization
     void Awake () {
@@ -61,7 +25,7 @@ public class SoundManager : MonoBehaviour {
             instance = this;
         else if (instance != this)
             Destroy(gameObject);
-        musicSoundList = new EvoTree<string, ArrayList>();
+        fxSoundList = new ArrayList();
         themeSounds = new ArrayList();
         FillAudioClips();
         DontDestroyOnLoad(gameObject);
@@ -140,21 +104,15 @@ public class SoundManager : MonoBehaviour {
             string quien = nodo.GetAttribute("who");
 
             AudioClip newTrack = Resources.Load("Music/fx/"+nombre, typeof(AudioClip)) as AudioClip;
-           // Dupla data = new Dupla(tipo,newTrack);
+            // Dupla data = new Dupla(tipo,newTrack);
 
             if (newTrack == null)
                 Debug.Log(nombre + " no cargado");
             else
-                if(musicSoundList.ContainsKey(quien))
-                {
-                    auxiliar = (ArrayList) musicSoundList[quien];
-                }
-            if(newTrack != null)
             {
-             //   auxiliar.Add(data);
-              //  Debug.Log(data.Sound);
-                musicSoundList.Add(quien, auxiliar);
-            }
+                fxSoundList.Add(newTrack);
+                Debug.Log(newTrack);
+            }   
             
 
 
@@ -180,77 +138,38 @@ public class SoundManager : MonoBehaviour {
     }
 
 
-   /* void switchMusic()
-    {
-        if(SceneManager.GetActiveScene().Equals(SceneManager.GetSceneByName("MainMenu")))
-        {
-            musicAudio.clip = Resources.Load("Music/Musica Menu", typeof(AudioClip)) as AudioClip;
-            musicAudio.Play();
-        }
-        if(bossBattle)
-        {
-            musicAudio.clip = Resources.Load("Music/Boss Battle", typeof(AudioClip)) as AudioClip;
-            musicAudio.Play();
-        }
-        
-    }
-    */
     // Update is called once per frame
     void Update () {
         
-        if (!SceneManager.GetActiveScene().Equals(SceneManager.GetSceneByName("ScenesTest")))
-        {   
-            if(!gameplay)
+        if(SceneManager.GetActiveScene().Equals(SceneManager.GetSceneByName("MainMenu")))
+        {
+            musicAudio.Stop();
+            foreach (AudioClip audio in themeSounds)
             {
-                gameplay = true;
-                musicAudio.Stop();
-                foreach (AudioClip audio in themeSounds)
+                if (audio.name.Equals("Musica Menu"))
                 {
-                    if (audio.name.Equals("Musica Menu"))
-                    {
 
-                        musicAudio.clip = audio;
-                        musicAudio.Play();
-                        break;
-                    }
-
+                    musicAudio.clip = audio;
+                    musicAudio.Play();
+                    break;
                 }
+
             }
-            if(bossBattleCall)
-            {
-                bossBattleCall = false;
-                musicAudio.Stop();
-                foreach (AudioClip audio in themeSounds)
-                {
-                    if (audio.name.Equals("Musica Menu"))
-                    {
-
-                        musicAudio.clip = audio;
-                        musicAudio.Play();
-                        break;
-                    }
-
-                }
-            }
-            if(bossBattle)
-            {
-                bossBattle = false;
-                musicAudio.Stop();
-                foreach (AudioClip audio in themeSounds)
-                {
-                    if (audio.name.Equals("Musica Menu"))
-                    {
-
-                        musicAudio.clip = audio;
-                        musicAudio.Play();
-                        break;
-                    }
-
-                }
-            }
-            
-            
         }
-        
+        if (SceneManager.GetActiveScene().Equals(SceneManager.GetSceneByName("pruebaProcedural")))
+        {
+            musicAudio.Stop();
+            foreach (AudioClip audio in themeSounds)
+            {
+                if (audio.name.Equals("GamePlay"))
+                {
+                    musicAudio.clip = audio;
+                    musicAudio.Play();
+                    break;
+                }
+
+            }
+        }
+
     }
 }
