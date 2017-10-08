@@ -3,7 +3,7 @@
 
  <Nodos>
 
-     <fx nombre="hitLarva" tipo="hit" who="Player" />
+     <fx nombre="golpe" tipo="hit" who="Player" />
      <fx nombre="hitSlime" tipo="damage" who="Slime" />
      <fx nombre="Larva" />
      <fx nombre="Larva" />
@@ -12,6 +12,5 @@
      <music nombre="FB Llamada Bosses V1" />
      <music nombre="FB Musica gameplay v1" />
      <music nombre="FB Battle Music v2" />
-
 
  </Nodos>
