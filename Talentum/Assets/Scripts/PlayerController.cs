@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
@@ -13,13 +15,23 @@ public class PlayerController : MonoBehaviour {
     public float maxJumpHeight;
     bool maxReached = false;
     private int direction;
+    float initialHealth = 100;
+    float currentHealth;
+    public Image health; 
 
     // Use this for initialization
     void Start()
     {
+        currentHealth = initialHealth;
+
+        
         rb2D = gameObject.GetComponent<Rigidbody2D>();
     }
 
+    private void OnGUI()
+    {
+        health.fillAmount = currentHealth / 100;
+    }
     // Update is called once per frame
     void Update()
     {
