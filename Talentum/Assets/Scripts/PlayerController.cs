@@ -71,12 +71,27 @@ public class PlayerController : MonoBehaviour {
             case 0:
                 if (Input.GetKey("a")) move.x = -1;
                 else if (Input.GetKey("d")) move.x = 1;
-                if (Input.GetKey("w")) move.y = 1;
+                if (Input.GetKey("w"))
+                { 
+                    if (isGrounded)
+                    {
+                        isGrounded = false;
+                        maxY = transform.position.y + maxJumpHeight;
+                    }
+                }
                 else if (Input.GetKey("s")) move.y = -1;
                 break;
             case 1:
                 if (Input.GetKey("a")) move.y = -1;
-                else if (Input.GetKey("d")) move.y = 1;
+                else if (Input.GetKey("d"))
+                {
+                    
+                    if (isGrounded)
+                    {
+                        isGrounded = false;
+                        maxY = transform.position.y + maxJumpHeight;
+                    }
+                }
                 if (Input.GetKey("w")) move.x = -1;
                 else if (Input.GetKey("s")) move.x = 1;
                 break;
@@ -84,10 +99,26 @@ public class PlayerController : MonoBehaviour {
                 if (Input.GetKey("a")) move.x = 1;
                 else if (Input.GetKey("d")) move.x = -1;
                 if (Input.GetKey("w")) move.y = -1;
-                else if (Input.GetKey("s")) move.y = 1;
+                else if (Input.GetKey("s"))
+                {
+                    
+                    if (isGrounded)
+                    {
+                        isGrounded = false;
+                        maxY = transform.position.y + maxJumpHeight;
+                    }
+                }
                 break;
             case 3:
-                if (Input.GetKey("a")) move.y = 1;
+                if (Input.GetKey("a"))
+                {
+                    
+                    if (isGrounded)
+                    {
+                        isGrounded = false;
+                        maxY = transform.position.y + maxJumpHeight;
+                    }
+                }
                 else if (Input.GetKey("d")) move.y = -1;
                 if (Input.GetKey("w")) move.x = 1;
                 else if (Input.GetKey("s")) move.x = -1;
