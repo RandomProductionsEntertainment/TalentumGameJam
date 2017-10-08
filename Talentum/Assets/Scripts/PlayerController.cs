@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
@@ -13,13 +15,23 @@ public class PlayerController : MonoBehaviour {
     public float maxJumpHeight;
     bool maxReached = false;
     private int direction;
+    float initialHealth = 100;
+    float currentHealth;
+    public Image health; 
 
     // Use this for initialization
     void Start()
     {
+        currentHealth = initialHealth;
+
+        
         rb2D = gameObject.GetComponent<Rigidbody2D>();
     }
 
+    private void OnGUI()
+    {
+        health.fillAmount = currentHealth / 100;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -27,11 +39,30 @@ public class PlayerController : MonoBehaviour {
         Vector2 move = Vector2.zero;
 
         ControlsDirection(ref move);
-        rb2D.transform.position = new Vector2(rb2D.transform.position.x + move.x * speed * Time.deltaTime, rb2D.transform.position.y + move.y * speed * Time.deltaTime);
+        if(!isGrounded)
+        {
+            if (transform.position.y >= maxY)
+            {
+                maxReached = true;
+            }
 
+            if(!maxReached)
+                move.y = 1;
+            else 
+            {
+                    move.y = -0.5f;
+            }
+            
+        }
+        rb2D.transform.position = new Vector2(rb2D.transform.position.x + move.x * speed * Time.deltaTime, rb2D.transform.position.y + move.y * speed * Time.deltaTime);
+       // health.fillAmount -= 0.25f * Time.deltaTime;
     }
 
     
+    void Jump(Vector2 move)
+    {
+        
+    }
     void ControlsDirection(ref Vector2 move)
     {
        

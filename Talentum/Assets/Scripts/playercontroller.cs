@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
@@ -13,13 +15,23 @@ public class PlayerController : MonoBehaviour {
     public float maxJumpHeight;
     bool maxReached = false;
     private int direction;
+    float initialHealth = 100;
+    float currentHealth;
+    public Image health; 
 
     // Use this for initialization
     void Start()
     {
+        currentHealth = initialHealth;
+
+        
         rb2D = gameObject.GetComponent<Rigidbody2D>();
     }
 
+    private void OnGUI()
+    {
+        health.fillAmount = currentHealth / 100;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -27,11 +39,30 @@ public class PlayerController : MonoBehaviour {
         Vector2 move = Vector2.zero;
 
         ControlsDirection(ref move);
-        rb2D.transform.position = new Vector2(rb2D.transform.position.x + move.x * speed * Time.deltaTime, rb2D.transform.position.y + move.y * speed * Time.deltaTime);
+        if(!isGrounded)
+        {
+            if (transform.position.y >= maxY)
+            {
+                maxReached = true;
+            }
 
+            if(!maxReached)
+                move.y = 1;
+            else 
+            {
+                    move.y = -0.5f;
+            }
+            
+        }
+        rb2D.transform.position = new Vector2(rb2D.transform.position.x + move.x * speed * Time.deltaTime, rb2D.transform.position.y + move.y * speed * Time.deltaTime);
+       // health.fillAmount -= 0.25f * Time.deltaTime;
     }
 
     
+    void Jump(Vector2 move)
+    {
+        
+    }
     void ControlsDirection(ref Vector2 move)
     {
        
@@ -40,12 +71,27 @@ public class PlayerController : MonoBehaviour {
             case 0:
                 if (Input.GetKey("a")) move.x = -1;
                 else if (Input.GetKey("d")) move.x = 1;
-                if (Input.GetKey("w")) move.y = 1;
+                if (Input.GetKey("w"))
+                { 
+                    if (isGrounded)
+                    {
+                        isGrounded = false;
+                        maxY = transform.position.y + maxJumpHeight;
+                    }
+                }
                 else if (Input.GetKey("s")) move.y = -1;
                 break;
             case 1:
                 if (Input.GetKey("a")) move.y = -1;
-                else if (Input.GetKey("d")) move.y = 1;
+                else if (Input.GetKey("d"))
+                {
+                    
+                    if (isGrounded)
+                    {
+                        isGrounded = false;
+                        maxY = transform.position.y + maxJumpHeight;
+                    }
+                }
                 if (Input.GetKey("w")) move.x = -1;
                 else if (Input.GetKey("s")) move.x = 1;
                 break;
@@ -53,10 +99,26 @@ public class PlayerController : MonoBehaviour {
                 if (Input.GetKey("a")) move.x = 1;
                 else if (Input.GetKey("d")) move.x = -1;
                 if (Input.GetKey("w")) move.y = -1;
-                else if (Input.GetKey("s")) move.y = 1;
+                else if (Input.GetKey("s"))
+                {
+                    
+                    if (isGrounded)
+                    {
+                        isGrounded = false;
+                        maxY = transform.position.y + maxJumpHeight;
+                    }
+                }
                 break;
             case 3:
-                if (Input.GetKey("a")) move.y = 1;
+                if (Input.GetKey("a"))
+                {
+                    
+                    if (isGrounded)
+                    {
+                        isGrounded = false;
+                        maxY = transform.position.y + maxJumpHeight;
+                    }
+                }
                 else if (Input.GetKey("d")) move.y = -1;
                 if (Input.GetKey("w")) move.x = 1;
                 else if (Input.GetKey("s")) move.x = -1;
@@ -70,13 +132,23 @@ public class PlayerController : MonoBehaviour {
     {
         direction = n;
     }
-
+    void UpdateHealth(float newHealth)
+    {
+        currentHealth += newHealth; 
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Ground" && !isGrounded)
+        if(collision.gameObject.tag == "Floor" && !isGrounded)
         {
             isGrounded = true;
             maxReached = false;
+        }
+
+        if(collision.gameObject.tag == "Obstacle")
+        {
+            UpdateHealth(-25f);
+           /* if (currentHealth == 0)
+                SceneManager.LoadSceneAsync("MainMenu");*/
         }
 
 
