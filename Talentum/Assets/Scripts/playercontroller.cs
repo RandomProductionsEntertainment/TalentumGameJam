@@ -19,6 +19,20 @@ public class PlayerController : MonoBehaviour {
     float currentHealth;
     public Image health; 
 
+
+
+    public float CurrentHealth
+    {
+        get
+        {
+            return currentHealth;
+        }
+        set
+        {
+            currentHealth = value;
+        }
+    }
+
     // Use this for initialization
     void Start()
     {
@@ -59,10 +73,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     
-    void Jump(Vector2 move)
-    {
-        
-    }
+
     void ControlsDirection(ref Vector2 move)
     {
        
@@ -132,7 +143,7 @@ public class PlayerController : MonoBehaviour {
     {
         direction = n;
     }
-    void UpdateHealth(float newHealth)
+    public void UpdateHealth(float newHealth)
     {
         currentHealth += newHealth; 
     }
@@ -156,45 +167,3 @@ public class PlayerController : MonoBehaviour {
 
 }
 
-
-/*move.x = Input.GetAxis("Horizontal");
-        move.y = 0f;
-
-        if (Input.GetAxis("Vertical") > 0 && isGrounded)
-        {
-            maxY = transform.position.y + maxJumpHeight;
-            move.y = takeOffJumpSpeed;
-            jumpSpeed = takeOffJumpSpeed;
-            isGrounded = false;
-        }
-
-        else if (!isGrounded)
-        {
-            
-                if (transform.position.y < maxY)
-                    maxReached = true;
-
-                /*if (!maxReached && Input.GetAxis("Vertical") == 1)
-                {
-                    move.y = Input.GetAxis("Vertical");
-                }
-                else
-                {
-                    move.y = move.y - 0.1f;
-                }
-                if(!maxReached)
-                {
-                    jumpSpeed = jumpSpeed + 0.2f;
-                }
-                else
-                {
-                    jumpSpeed = jumpSpeed - 0.02f;
-                }
-
-
-                move.y = jumpSpeed;
-            
-
-        }*/
-/*else
-    move.y = Input.GetAxis("Vertical");*/

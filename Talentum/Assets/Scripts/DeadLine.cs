@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class DeadLine : MonoBehaviour {
 
+
+
 	// Use this for initialization
 	void Start () {
 		
@@ -13,7 +15,8 @@ public class DeadLine : MonoBehaviour {
     {
         if(collision.CompareTag("Player"))
         {
-            SceneManager.LoadSceneAsync("MainMenu");
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().UpdateHealth(-100);
+         //   SceneManager.LoadSceneAsync("MainMenu");
         }
     }
     // Update is called once per frame
