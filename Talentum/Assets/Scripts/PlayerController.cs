@@ -17,8 +17,9 @@ public class PlayerController : MonoBehaviour {
     private int direction;
     float initialHealth = 100;
     float currentHealth;
-    public Image health; 
-
+    public Image health;
+    float aux;
+    bool newHealth;
 
 
     public float CurrentHealth
@@ -44,6 +45,10 @@ public class PlayerController : MonoBehaviour {
 
     private void OnGUI()
     {
+        if(newHealth)
+        {
+
+        }
         health.fillAmount = currentHealth / 100;
     }
     // Update is called once per frame
@@ -76,8 +81,8 @@ public class PlayerController : MonoBehaviour {
 
     void ControlsDirection(ref Vector2 move)
     {
-       
-        switch(direction)
+
+        switch (direction)
         {
             case 0:
                 if (Input.GetKey("a")) move.x = -1;
@@ -145,7 +150,8 @@ public class PlayerController : MonoBehaviour {
     }
     public void UpdateHealth(float newHealth)
     {
-        currentHealth += newHealth; 
+        currentHealth += newHealth;
+        aux = newHealth;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
