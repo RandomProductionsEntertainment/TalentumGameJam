@@ -15,6 +15,7 @@ public class DirectionLogic : MonoBehaviour {
         t = 0;
         InvokeRepeating("ChangeDirection", 2.0f, 1f);
 
+
     }
 
     // Update is called once per frame
