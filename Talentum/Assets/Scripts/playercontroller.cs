@@ -156,6 +156,7 @@ public class PlayerController : MonoBehaviour {
     }
     public void UpdateHealth(float health)
     {
+        addedHealth = true;
         currentHealth += health;
     }
     private void OnCollisionEnter2D(Collision2D collision)
