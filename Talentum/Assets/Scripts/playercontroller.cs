@@ -128,7 +128,7 @@ public class PlayerController : MonoBehaviour {
             case 3:
                 if (Input.GetKey("a"))
                 {
-                    
+                    GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>().playfx("SFX Jump");
                     if (isGrounded)
                     {
                         isGrounded = false;
@@ -163,6 +163,7 @@ public class PlayerController : MonoBehaviour {
 
         if (collision.gameObject.tag == "Obstacle" && !collision.gameObject.GetComponent<Obstacle>().Touched)
         {
+            GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>().playfx("SFX Hit");
             UpdateHealth(-25f);
            /* if (currentHealth == 0)
                 SceneManager.LoadSceneAsync("MainMenu");*/

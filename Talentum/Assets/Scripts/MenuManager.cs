@@ -19,19 +19,23 @@ public class MenuManager : MonoBehaviour {
 	
     public void showControls()
     {
+        GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>().playfx("SFX Select");
         controls.SetActive(true);
     }
 
     public void newGame()
     {
+        GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>().playfx("SFX Select");
         SceneManager.LoadSceneAsync("pruebaProcedural");
     }
     public void closeControls()
     {
+        GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>().playfx("SFX Select");
         controls.SetActive(false);
     }
     public void quit()
     {
+        GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>().playfx("SFX Select");
         Application.Quit();
     }
     // Update is called once per frame

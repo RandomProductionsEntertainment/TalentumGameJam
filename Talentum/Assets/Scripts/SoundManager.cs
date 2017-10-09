@@ -6,10 +6,10 @@ using System.Xml;
 public class SoundManager : MonoBehaviour {
 
 
-    [SerializeField]
-    AudioSource fxAudio;
-    [SerializeField]
-    AudioSource musicAudio;
+
+    public AudioSource fxAudio;
+
+    public AudioSource musicAudio;
     public static SoundManager instance = null;
     private bool bossBattle = false;
     private bool bossBattleCall = false;
@@ -18,6 +18,7 @@ public class SoundManager : MonoBehaviour {
     ArrayList themeSounds;
     private bool loopInicial = false;
     private bool playing = false;
+    private bool intro = false;
 
 
     // Use this for initialization
@@ -34,19 +35,18 @@ public class SoundManager : MonoBehaviour {
 
 	}
 	
-    void playfx(string whoAmI, string type)
+    public void playfx(string nameOfFx)
     {
-      /*  ArrayList aux = (ArrayList)musicSoundList[whoAmI];
-        foreach(Dupla d in aux)
+        foreach (AudioClip audio in fxSoundList)
         {
-            if(d.Type.Equals(type))
+            if (audio.name.Equals(nameOfFx))
             {
-                AudioClip fx = d.Sound;
-                fxAudio.clip = fx;
+                fxAudio.clip = audio;
+                fxAudio.Play();
                 break;
             }
-        }*/
-        fxAudio.Play();
+
+        }
 
     }
 
@@ -145,13 +145,23 @@ public class SoundManager : MonoBehaviour {
 
         if(SceneManager.GetActiveScene().Equals(SceneManager.GetSceneByName("MainMenu")))
         {
+            musicAudio.loop = false;
             if (!musicAudio.isPlaying)
             {
                 musicAudio.Stop();
                 foreach (AudioClip audio in themeSounds)
                 {
-                    if (audio.name.Equals("Loop Inicial"))
+                    if (audio.name.Equals("Intro Loop Inicial") && !intro)
                     {
+                        intro = true;
+                        playing = true;
+                        musicAudio.clip = audio;
+                        musicAudio.Play();
+                        break;
+                    }
+                    if (audio.name.Equals("Intro Loop Main"))
+                    {
+                        intro = true;
                         playing = true;
                         musicAudio.clip = audio;
                         musicAudio.Play();
@@ -164,6 +174,21 @@ public class SoundManager : MonoBehaviour {
         }
         if (SceneManager.GetActiveScene().Equals(SceneManager.GetSceneByName("pruebaProcedural")))
         {
+            foreach (AudioClip audio in themeSounds)
+            {
+                if (audio.name.Equals("Intro Loop Inicial"))
+                {
+                    themeSounds.Remove(audio);
+                    break;
+                }
+                if (audio.name.Equals("Intro Loop Main"))
+                {
+                    themeSounds.Remove(audio);
+                    break;
+                }
+
+            }
+
             musicAudio.loop = false;
 
             if (!musicAudio.isPlaying)

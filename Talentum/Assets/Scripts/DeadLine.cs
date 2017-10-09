@@ -15,6 +15,9 @@ public class DeadLine : MonoBehaviour {
     {
         if(collision.CompareTag("Player"))
         {
+            GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>().playfx("Muerte");
+            GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>().fxAudio.Stop();
+            GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>().musicAudio.Stop();
             GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().UpdateHealth(-100);
          //   SceneManager.LoadSceneAsync("MainMenu");
         }

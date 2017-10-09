@@ -39,6 +39,9 @@ public class deadMenu : MonoBehaviour {
 
 		if (player.GetComponent<PlayerController>().CurrentHealth <= 0 )
         {
+            GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>().playfx("Muerte");
+            GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>().fxAudio.Stop();
+            GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>().musicAudio.Stop();
             Time.timeScale = 0;
             showMenu.SetActive(true);
         }

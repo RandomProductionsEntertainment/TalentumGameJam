@@ -3,11 +3,13 @@
 
  <Nodos>
 
-     <fx nombre="" tipo="hit" who="Player" />
-     <fx nombre="hitSlime" tipo="damage" who="Slime" />
+     <fx nombre="SFX Select" />
+     <fx nombre="SFX Ok" />
      <fx nombre="Muerte" />
-     <fx nombre="Larva" />
-     <fx nombre="Larva" />
+     <fx nombre="SFX Jump" />
+     <fx nombre="SFX Hit" />
+     <music nombre="Intro Loop Inicial" />
+     <music nombre="Intro Loop Main" />
      <music nombre="Loop Inicial" />
      <music nombre="Loop 1" />
      <music nombre="Loop 2" />
