@@ -16,6 +16,8 @@ public class SoundManager : MonoBehaviour {
     private bool gameplay = false;
     ArrayList fxSoundList;
     ArrayList themeSounds;
+    private bool loopInicial = false;
+    private bool playing = false;
 
 
     // Use this for initialization
@@ -140,36 +142,61 @@ public class SoundManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        
+
         if(SceneManager.GetActiveScene().Equals(SceneManager.GetSceneByName("MainMenu")))
         {
-            musicAudio.Stop();
-            foreach (AudioClip audio in themeSounds)
+            if (!musicAudio.isPlaying)
             {
-                if (audio.name.Equals("Musica Menu"))
+                musicAudio.Stop();
+                foreach (AudioClip audio in themeSounds)
                 {
+                    if (audio.name.Equals("Loop Inicial"))
+                    {
+                        playing = true;
+                        musicAudio.clip = audio;
+                        musicAudio.Play();
+                        break;
+                    }
 
-                    musicAudio.clip = audio;
-                    musicAudio.Play();
-                    break;
                 }
-
             }
+            
         }
         if (SceneManager.GetActiveScene().Equals(SceneManager.GetSceneByName("pruebaProcedural")))
         {
-            musicAudio.Stop();
-            foreach (AudioClip audio in themeSounds)
-            {
-                if (audio.name.Equals("GamePlay"))
-                {
-                    musicAudio.clip = audio;
-                    musicAudio.Play();
-                    break;
-                }
+            musicAudio.loop = false;
 
+            if (!musicAudio.isPlaying)
+            {
+                musicAudio.Stop();
+                foreach (AudioClip audio in themeSounds)
+                {
+                    int centinela = UnityEngine.Random.RandomRange(0, 4);
+                    if (audio.name.Equals("Loop Inicial"))
+                    {
+                        loopInicial = true;
+                        playing = true;
+                        musicAudio.clip = audio;
+                        musicAudio.Play();
+                        Debug.Log(audio.name);
+                        themeSounds.Remove(audio);
+                        break;
+                    }
+                    else if(!audio.name.Equals(musicAudio.clip.name) && centinela == 0)
+                    {
+                        Debug.Log("no loop: "+audio.name);
+                        musicAudio.clip = audio;
+                        musicAudio.Play();
+                        break;
+                    }
+
+                }
             }
+
+           
+
         }
+        
 
     }
 }

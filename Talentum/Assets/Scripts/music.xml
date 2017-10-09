@@ -3,14 +3,15 @@
 
  <Nodos>
 
-     <fx nombre="golpe" tipo="hit" who="Player" />
+     <fx nombre="" tipo="hit" who="Player" />
      <fx nombre="hitSlime" tipo="damage" who="Slime" />
+     <fx nombre="Muerte" />
      <fx nombre="Larva" />
      <fx nombre="Larva" />
-     <fx nombre="Larva" />
-     <music nombre="Musica Menu" />
-     <music nombre="FB Llamada Bosses V1" />
-     <music nombre="FB Musica gameplay v1" />
-     <music nombre="FB Battle Music v2" />
-
+     <music nombre="Loop Inicial" />
+     <music nombre="Loop 1" />
+     <music nombre="Loop 2" />
+     <music nombre="Loop 3" />
+     <music nombre="Loop 4" />
+      
  </Nodos>

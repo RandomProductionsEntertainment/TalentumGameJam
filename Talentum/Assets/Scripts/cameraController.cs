@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class cameraController : MonoBehaviour {
 
-    float speed = 8f;
+    float speed = 7f;
 
     // Use this for initialization
     void Start () {

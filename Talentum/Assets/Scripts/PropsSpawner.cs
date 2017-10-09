@@ -20,9 +20,9 @@ public class PropsSpawner : MonoBehaviour {
 
     private void spawnProps()
     {
-        
-        Instantiate(whatPrefabIs[UnityEngine.Random.Range(0, whatPrefabIs.Length)], spawner[UnityEngine.Random.Range(0, spawner.Length )].transform.position, Quaternion.identity);
-        Invoke("spawnProps",UnityEngine.Random.Range(0, maxTimeToSpawn));
+        if(UnityEngine.Random.Range(0, 5) == 0)
+            Instantiate(whatPrefabIs[UnityEngine.Random.Range(0, whatPrefabIs.Length)], spawner[UnityEngine.Random.Range(0, spawner.Length )].transform.position, Quaternion.identity);
+        Invoke("spawnProps",UnityEngine.Random.Range(1, maxTimeToSpawn));
     }
 
     // Update is called once per frame
