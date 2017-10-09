@@ -161,7 +161,7 @@ public class PlayerController : MonoBehaviour {
             maxReached = false;
         }
 
-        if(collision.gameObject.tag == "Obstacle")
+        if (collision.gameObject.tag == "Obstacle" && !collision.gameObject.GetComponent<Obstacle>().Touched)
         {
             UpdateHealth(-25f);
            /* if (currentHealth == 0)
