@@ -153,10 +153,10 @@ public class PlayerController : MonoBehaviour {
     {
         direction = n;
     }
-    public void UpdateHealth(float newHealth)
+    public void UpdateHealth(float health)
     {
-        currentHealth += newHealth;
-        aux = newHealth;
+        currentHealth += health;
+        addedHealth = true;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -166,21 +166,20 @@ public class PlayerController : MonoBehaviour {
             maxReached = false;
         }
 
-        if (collision.gameObject.CompareTag("Bottom"))
+       
+
+        if (collision.gameObject.tag == "Obstacle" && !collision.gameObject.GetComponent<Obstacle>().Touched)
+        {
+            GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>().playfx("SFX Hit");
+            UpdateHealth(-25f);
+          
+        }
+
+        if (collision.gameObject.tag == "Obstacle2")
         {
             maxReached = true;
             Debug.Log("BOTTOM");
         }
-
-        /*if (collision.gameObject.tag == "Obstacle" && !collision.gameObject.GetComponent<Obstacle>().Touched)
-        {
-            GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>().playfx("SFX Hit");
-            UpdateHealth(-25f);
-            addedHealth = true;
-          
-        }*/
-
-
     }
 
 }
