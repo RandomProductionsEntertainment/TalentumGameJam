@@ -18,8 +18,9 @@ public class PlayerController : MonoBehaviour {
     float initialHealth = 100;
     float currentHealth;
     public Image health;
-    float newHealth;
-    bool addedHealth = false;
+    float aux;
+    bool newHealth;
+
 
     public float CurrentHealth
     {
@@ -44,18 +45,11 @@ public class PlayerController : MonoBehaviour {
 
     private void OnGUI()
     {
-
-        if (addedHealth)
+        if(newHealth)
         {
-            if (health.fillAmount <= currentHealth / 100)
-                addedHealth = false;
 
-            health.fillAmount -= 0.05f * Time.deltaTime;
-
-                    
         }
-        else
-            health.fillAmount = currentHealth / 100;
+        health.fillAmount = currentHealth / 100;
     }
     // Update is called once per frame
     void Update()
@@ -80,7 +74,7 @@ public class PlayerController : MonoBehaviour {
             
         }
         rb2D.transform.position = new Vector2(rb2D.transform.position.x + move.x * speed * Time.deltaTime, rb2D.transform.position.y + move.y * speed * Time.deltaTime);
-     
+       // health.fillAmount -= 0.25f * Time.deltaTime;
     }
 
     
@@ -154,9 +148,10 @@ public class PlayerController : MonoBehaviour {
     {
         direction = n;
     }
-    public void UpdateHealth(float health)
+    public void UpdateHealth(float newHealth)
     {
-        currentHealth += health;
+        currentHealth += newHealth;
+        aux = newHealth;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -166,7 +161,7 @@ public class PlayerController : MonoBehaviour {
             maxReached = false;
         }
 
-        if(collision.gameObject.tag == "Obstacle" && !collision.gameObject.GetComponent<Obstacle>().Touched)
+        if(collision.gameObject.tag == "Obstacle")
         {
             UpdateHealth(-25f);
            /* if (currentHealth == 0)
