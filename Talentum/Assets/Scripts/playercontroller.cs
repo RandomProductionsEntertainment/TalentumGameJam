@@ -8,8 +8,7 @@ public class PlayerController : MonoBehaviour {
 
     Rigidbody2D rb2D;
     public float speed = 10f;
-    public float takeOffJumpSpeed = 3f;
-    float jumpSpeed;
+    public float jumpSpeed;
     bool isGrounded = true;
     float maxY;
     public float maxJumpHeight;
@@ -20,7 +19,7 @@ public class PlayerController : MonoBehaviour {
     public Image health;
     float aux;
     bool newHealth;
-
+    bool addedHealth = false;
 
     public float CurrentHealth
     {
@@ -45,14 +44,20 @@ public class PlayerController : MonoBehaviour {
 
     private void OnGUI()
     {
-        if(newHealth)
+        if (addedHealth)
         {
+            if (health.fillAmount <= currentHealth / 100)
+                addedHealth = false;
+
+            health.fillAmount -= 0.05f * Time.deltaTime;
+
 
         }
-        health.fillAmount = currentHealth / 100;
+        else
+            health.fillAmount = currentHealth / 100;
     }
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 
         Vector2 move = Vector2.zero;
@@ -65,13 +70,13 @@ public class PlayerController : MonoBehaviour {
                 maxReached = true;
             }
 
-            if(!maxReached)
-                move.y = 1;
-            else 
+            if (!maxReached)
+                move.y = jumpSpeed;// Input.GetAxis("Vertical") * jumpSpeed;
+            else
             {
-                    move.y = -0.5f;
+                move.y = -jumpSpeed;
             }
-            
+
         }
         rb2D.transform.position = new Vector2(rb2D.transform.position.x + move.x * speed * Time.deltaTime, rb2D.transform.position.y + move.y * speed * Time.deltaTime);
        // health.fillAmount -= 0.25f * Time.deltaTime;
@@ -161,13 +166,19 @@ public class PlayerController : MonoBehaviour {
             maxReached = false;
         }
 
-        if (collision.gameObject.tag == "Obstacle" && !collision.gameObject.GetComponent<Obstacle>().Touched)
+        if (collision.gameObject.CompareTag("Bottom"))
+        {
+            maxReached = true;
+            Debug.Log("BOTTOM");
+        }
+
+        /*if (collision.gameObject.tag == "Obstacle" && !collision.gameObject.GetComponent<Obstacle>().Touched)
         {
             GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>().playfx("SFX Hit");
             UpdateHealth(-25f);
-           /* if (currentHealth == 0)
-                SceneManager.LoadSceneAsync("MainMenu");*/
-        }
+            addedHealth = true;
+          
+        }*/
 
 
     }

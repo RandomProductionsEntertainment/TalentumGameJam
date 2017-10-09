@@ -19,7 +19,7 @@ public class Balancing : MonoBehaviour {
 	void Update () {
         if (angle < 45 && right)
         {
-            Debug.Log(angle);
+            //Debug.Log(angle);
             angle += 1;
             transform.Rotate(new Vector3(0, 0, 1), 2*Time.deltaTime);
         }
