@@ -22,10 +22,10 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 906
-  m_MinSize: {x: 913, y: 442}
-  m_MaxSize: {x: 22008, y: 10021}
+  m_MinSize: {x: 915, y: 442}
+  m_MaxSize: {x: 22010, y: 10021}
   vertical: 0
-  controlID: 2094
+  controlID: 10093
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_MinSize: {x: 202, y: 442}
   m_MaxSize: {x: 4002, y: 8042}
   vertical: 1
-  controlID: 2002
+  controlID: 10094
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -178,14 +178,14 @@ MonoBehaviour:
     width: 906
     height: 444
   m_SceneLighting: 1
-  lastFramingTime: 450.42213824084473
+  lastFramingTime: 2230.0346141371315
   m_2DMode: 1
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 109, y: 329.5, z: 0}
+    m_Target: {x: 453, y: 201.5, z: 0}
     speed: 2
-    m_Value: {x: 109, y: 329.5, z: 0}
+    m_Value: {x: 453, y: 201.5, z: 0}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -212,9 +212,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 233.34525
+    m_Target: 271.0072
     speed: 2
-    m_Value: 233.34525
+    m_Value: 271.0072
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -303,9 +303,9 @@ MonoBehaviour:
     height: 885
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 9eb8ffff
-    m_LastClickedID: -18274
-    m_ExpandedIDs: 9eb8ffff4cf2ffff00000000802c0000
+    m_SelectedIDs: 96450000
+    m_LastClickedID: 17814
+    m_ExpandedIDs: 687ffdff10c5fdfff630ffff248affff00000000f02800000029000046290000e6290000664500008245000096450000ae450000de450000ec450000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -323,7 +323,8 @@ MonoBehaviour:
       m_IsRenamingFilename: 0
       m_ClientGUIView: {fileID: 7}
     m_SearchString: 
-  m_ExpandedScenes: []
+  m_ExpandedScenes:
+  - pruebaProcedural
   m_CurrenRootInstanceID: 0
   m_Locked: 0
   m_CurrentSortingName: TransformSorting
@@ -390,19 +391,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Scripts
+    - Assets/Art
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts
+  - Assets/Art
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\BlancaMacazagaZuazo\Documents\GameJams\Talentum\TalentumGameJam\Talentum
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: bc2b0000
-    m_LastClickedID: 11196
-    m_ExpandedIDs: 00000000e82a0000082b0000202b000000ca9a3bffffff7f
+    m_SelectedIDs: d6270000
+    m_LastClickedID: 10198
+    m_ExpandedIDs: 00000000302600006626000092260000d627000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -430,7 +431,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000e82a0000082b0000202b000000ca9a3bffffff7f
+    m_ExpandedIDs: 00000000302600006626000092260000d627000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -455,10 +456,10 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 9eb8ffff
-    m_LastClickedInstanceID: -18274
+    m_SelectedInstanceIDs: 96450000
+    m_LastClickedInstanceID: 17814
     m_HadKeyboardFocusLastEvent: 0
-    m_ExpandedInstanceIDs: 
+    m_ExpandedInstanceIDs: 28270000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -482,7 +483,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 847}
+    m_ScrollPosition: {x: 0, y: 196}
     m_GridSize: 64
   m_DirectoriesAreaWidth: 115
 --- !u!114 &11
