@@ -27,7 +27,10 @@ public class Obstacle : MonoBehaviour {
     {
         if (coll.gameObject.CompareTag("Player"))
             Invoke("disableDamage", 0.1f);
-
+       /* if (coll.gameObject.CompareTag("Player") && gameObject.transform.Find("Bottom").GetComponent<Collider2D>().tag == "Bottom")
+        {
+            Debug.Log("BOTTOM");
+        }*/
     }
 
     // Use this for initialization

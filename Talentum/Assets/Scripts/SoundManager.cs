@@ -121,7 +121,7 @@ public class SoundManager : MonoBehaviour {
         }
 
         XmlNodeList musicList = ((XmlElement)nodos[0]).GetElementsByTagName("music");
-        Debug.Log(musicList.Count+ " elementos");
+       // Debug.Log(musicList.Count+ " elementos");
         foreach (XmlElement nodo in musicList)
         {
             //El nombre del theme audio 

@@ -7,6 +7,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     Rigidbody2D rb2D;
+    RaycastHit2D hitInfo;
+    Collider2D[] colliders;
     public float speed = 10f;
     public float jumpSpeed;
     bool isGrounded = true;
@@ -175,10 +177,11 @@ public class PlayerController : MonoBehaviour {
           
         }
 
-        if (collision.gameObject.tag == "Obstacle2")
+        if (collision.gameObject.tag == "Bottom" && !collision.gameObject.GetComponent<Obstacle>().Touched)
         {
             maxReached = true;
-            Debug.Log("BOTTOM");
+            GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>().playfx("SFX Hit");
+            UpdateHealth(-25f);
         }
     }
 
