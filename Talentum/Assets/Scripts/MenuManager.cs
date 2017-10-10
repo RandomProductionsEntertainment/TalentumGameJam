@@ -19,6 +19,7 @@ public class MenuManager : MonoBehaviour {
 	
     public void showControls()
     {
+        menu.SetActive(false);
         GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>().playfx("SFX Select");
         controls.SetActive(true);
     }
@@ -30,6 +31,7 @@ public class MenuManager : MonoBehaviour {
     }
     public void closeControls()
     {
+        menu.SetActive(true);
         GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>().playfx("SFX Select");
         controls.SetActive(false);
     }

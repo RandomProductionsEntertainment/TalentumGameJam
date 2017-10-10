@@ -191,7 +191,7 @@ public class SoundManager : MonoBehaviour {
 
             musicAudio.loop = false;
 
-            if (!musicAudio.isPlaying)
+            if (!musicAudio.isPlaying || musicAudio.name.Equals("Intro Loop Inicial") || musicAudio.name.Equals("Intro Loop Main"))
             {
                 musicAudio.Stop();
                 foreach (AudioClip audio in themeSounds)
