@@ -67,22 +67,23 @@ public class brujula : MonoBehaviour {
             }
             if (angle == changeDir)
             {
-                if (angle >= -45 && angle <= 45 || angle >= 315 && angle <= 405 || angle <= -315 && angle >= -405)
+                float zAngle = transform.rotation.z;
+                if (zAngle >= -45 && zAngle <= 45 || zAngle >= 315 && zAngle <= 405 || zAngle <= -315 && zAngle >= -405)
                 {
                     GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().ChangeDirection(0);
                     north.enabled = true;
                 }
-                else if (angle <= 135 && angle >= 45 || angle >= -315 && angle <= -225)
+                else if (zAngle <= 135 && zAngle >= 45 || zAngle >= -315 && zAngle <= -225)
                 {
                     GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().ChangeDirection(3);
                     west.enabled = true;
                 }
-                else if (angle >= 135 && angle <= 225 || angle >= -225 && angle <= -135)
+                else if (zAngle >= 135 && zAngle <= 225 || zAngle >= -225 && zAngle <= -135)
                 {
                     GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().ChangeDirection(2);
                     south.enabled = true;
                 }
-                else if (angle <= 315 && angle >= 225 || angle >= -135 && angle <= -45)
+                else if (zAngle <= 315 && zAngle >= 225 || zAngle >= -135 && zAngle <= -45)
                 {
                     GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().ChangeDirection(1);
                     east.enabled = true;
