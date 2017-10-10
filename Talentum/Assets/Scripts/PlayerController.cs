@@ -4,7 +4,8 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
 
     Rigidbody2D rb2D;
     RaycastHit2D hitInfo;
@@ -23,14 +24,14 @@ public class PlayerController : MonoBehaviour {
     public Image health3;
     public Image health4;
     Image health;
-    float aux;
+    float aux = 0.5f;
     bool newHealth;
     bool addedHealth = false;
     float auxHealth = 0.5f;
     bool passed = false;
     Animator anim;
     float auxHealth2 = 0.25f;
-
+    bool dead = false;
     public float CurrentHealth
     {
         get
@@ -113,7 +114,7 @@ public class PlayerController : MonoBehaviour {
         Vector2 move = Vector2.zero;
 
         ControlsDirection(ref move);
-        if(!isGrounded)
+        if (!isGrounded)
         {
             Debug.Log("playjump");
             anim.SetBool("grounded", false);
@@ -131,13 +132,13 @@ public class PlayerController : MonoBehaviour {
             }
 
         }
-       
+
         rb2D.transform.position = new Vector2(rb2D.transform.position.x + move.x * speed * Time.deltaTime, rb2D.transform.position.y + move.y * speed * Time.deltaTime);
         // health.fillAmount -= 0.25f * Time.deltaTime;
         anim.SetBool("grounded", true);
     }
 
-    
+
 
     void ControlsDirection(ref Vector2 move)
     {
@@ -148,7 +149,7 @@ public class PlayerController : MonoBehaviour {
                 if (Input.GetKey("a")) move.x = -1;
                 else if (Input.GetKey("d")) move.x = 1;
                 if (Input.GetKey("w"))
-                { 
+                {
                     if (isGrounded)
                     {
                         isGrounded = false;
