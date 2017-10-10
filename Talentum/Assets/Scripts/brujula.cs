@@ -8,15 +8,13 @@ public class brujula : MonoBehaviour {
     bool finished = true;
     float timer = 0;
     int changeDir = 0;
-    [SerializeField]
-    Rigidbody2D rb2D;
 
 
     // Use this for initialization
     void Start()
     {
 
-        // rb2D.AddForce(Vector2.right*3);
+     
     }
 
     // Update is called once per frame
@@ -39,6 +37,14 @@ public class brujula : MonoBehaviour {
             }
             if (angle == changeDir)
             {
+                if (angle >= -45 && angle <= 45 || angle >= 315 && angle <= 405 || angle <= -315 && angle >= -405)
+                    GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().ChangeDirection(0);
+                else if (angle <= 135 && angle >= 45 || angle >= -315 && angle <= -225)
+                    GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().ChangeDirection(3);
+                else if (angle >= 135 && angle <= 225 || angle >= -225 && angle <= -135)
+                    GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().ChangeDirection(2);
+                else if (angle <= 315 && angle >= 225 || angle >= -135 && angle <= -45)
+                    GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().ChangeDirection(1);
                 angle = 0;
                 finished = true;
                 timer = 0;
