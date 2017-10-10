@@ -97,15 +97,20 @@ public class PlayerController : MonoBehaviour
 
         if (addedHealth)
         {
+
             if (health.fillAmount <= currentHealth / 100)
                 addedHealth = false;
 
-            health.fillAmount -= 0.05f * Time.deltaTime;
+            health.fillAmount -= aux * Time.deltaTime;
 
 
         }
         else
             health.fillAmount = currentHealth / 100;
+        if (health.fillAmount <= 0)
+        {
+            currentHealth = 0;
+        }
     }
     // Update is called once per frame
     void FixedUpdate()
@@ -162,7 +167,7 @@ public class PlayerController : MonoBehaviour
                 if (Input.GetKey("a")) move.y = -1;
                 else if (Input.GetKey("d"))
                 {
-                    
+
                     if (isGrounded)
                     {
                         isGrounded = false;
@@ -178,7 +183,7 @@ public class PlayerController : MonoBehaviour
                 if (Input.GetKey("w")) move.y = -1;
                 else if (Input.GetKey("s"))
                 {
-                    
+
                     if (isGrounded)
                     {
                         isGrounded = false;
@@ -211,27 +216,34 @@ public class PlayerController : MonoBehaviour
     }
     public void UpdateHealth(float health)
     {
-        currentHealth += health;
+        if(!dead)
+            currentHealth += health;
+        if (currentHealth <= 0 && !dead)
+        {
+            dead = true;
+            aux = 0.65f;
+            currentHealth = 1;
+        }
         addedHealth = true;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Floor" && !isGrounded)
+        if (collision.gameObject.tag == "Floor" && !isGrounded)
         {
             isGrounded = true;
             maxReached = false;
         }
 
-       
+
 
         if (collision.gameObject.tag == "Obstacle" && !collision.gameObject.GetComponent<Obstacle>().Touched)
         {
             GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>().playfx("SFX Hit");
             UpdateHealth(-25f);
-         //   anim.SetBool("hit", true);
+            //   anim.SetBool("hit", true);
             Debug.Log("playhit");
             anim.Play("hit");
-           // anim.SetBool("hit", false);
+            // anim.SetBool("hit", false);
 
 
         }
@@ -241,10 +253,10 @@ public class PlayerController : MonoBehaviour
             maxReached = true;
             GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>().playfx("SFX Hit");
             UpdateHealth(-25f);
-         //   anim.SetBool("hit", true);
+            //   anim.SetBool("hit", true);
             Debug.Log("playHIT");
             anim.Play("hit");
-          //  anim.SetBool("hit", false);
+            //  anim.SetBool("hit", false);
         }
     }
 
