@@ -6,6 +6,19 @@ public class cameraController : MonoBehaviour {
 
     float speed = 4f;
 
+
+    public float Speed
+    {
+        get
+        {
+            return speed;
+        }
+        set
+        {
+            speed = value;
+        }
+    }
+
     // Use this for initialization
     void Start () {
 		

@@ -15,10 +15,12 @@ public class deadMenu : MonoBehaviour {
     float timeWithoutDie = 0.0f;
     public GameObject text;
     public GameObject fuckingMessage;
+GameObject hardMode;
 
 
 	// Use this for initialization
 	void Start () {
+        hardMode = GameObject.FindGameObjectWithTag("MainCamera");
         InvokeRepeating("chrono",0.1f,0.1f);
 	}
 	
@@ -44,6 +46,19 @@ public class deadMenu : MonoBehaviour {
     }
 	// Update is called once per frame
 	void Update () {
+        if (timeWithoutDie > 30 && hardMode.GetComponent<cameraController>().Speed == 4)
+            hardMode.GetComponent<cameraController>().Speed += 0.5f;
+
+        if(timeWithoutDie > 45 && hardMode.GetComponent<cameraController>().Speed == 4.5f)
+            hardMode.GetComponent<cameraController>().Speed += 0.5f;
+        if (timeWithoutDie > 65 && hardMode.GetComponent<cameraController>().Speed == 5f)
+            hardMode.GetComponent<cameraController>().Speed += 1f;
+        if (timeWithoutDie > 85 && hardMode.GetComponent<cameraController>().Speed == 6f)
+        {
+            hardMode.GetComponent<cameraController>().Speed += 0.5f;
+            GameObject.Find("PropsFloorSpawner").GetComponent<PropsSpawner>().MaxTimeToSpawn -= 2;
+        }
+
         timeWithoutDie += Time.deltaTime;
 		if (player.GetComponent<PlayerController>().CurrentHealth <= 0 )
         {

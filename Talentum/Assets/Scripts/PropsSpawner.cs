@@ -13,6 +13,19 @@ public class PropsSpawner : MonoBehaviour {
     [SerializeField]
     int maxTimeToSpawn = 3;
     
+
+    public int MaxTimeToSpawn
+    {
+        get
+        {
+            return maxTimeToSpawn;
+        }
+        set
+        {
+            maxTimeToSpawn = value;
+        }
+    }
+
 	// Use this for initialization
 	void Start () {
         spawnProps();
