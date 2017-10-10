@@ -31,7 +31,7 @@ public class brujula : MonoBehaviour {
                 finished = false;
             }
 
-            Debug.Log("changedir: " + changeDir);
+ 
             if(angle < changeDir)
             {
                 angle += 1;
@@ -48,7 +48,7 @@ public class brujula : MonoBehaviour {
         }
         else
             timer += Time.deltaTime;
-        Debug.Log(timer);
+
 
 
     }

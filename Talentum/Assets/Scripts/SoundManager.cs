@@ -127,12 +127,10 @@ public class SoundManager : MonoBehaviour {
             //El nombre del theme audio 
             string nombre =
                 nodo.GetAttribute("nombre");
-            Debug.Log("entro aqui");
-            AudioClip newTrack = Resources.Load("Music/"+nombre, typeof(AudioClip)) as AudioClip;
+             AudioClip newTrack = Resources.Load("Music/"+nombre, typeof(AudioClip)) as AudioClip;
             if(newTrack != null)
             {
                 themeSounds.Add(newTrack);
-                Debug.Log(newTrack);
             }
            
 
@@ -203,13 +201,13 @@ public class SoundManager : MonoBehaviour {
                         playing = true;
                         musicAudio.clip = audio;
                         musicAudio.Play();
-                        Debug.Log(audio.name);
+
                         themeSounds.Remove(audio);
                         break;
                     }
                     else if(!audio.name.Equals(musicAudio.clip.name) && centinela == 0)
                     {
-                        Debug.Log("no loop: "+audio.name);
+
                         musicAudio.clip = audio;
                         musicAudio.Play();
                         break;

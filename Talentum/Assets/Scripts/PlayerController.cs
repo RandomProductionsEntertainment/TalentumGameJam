@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour {
     bool addedHealth = false;
     float auxHealth = 0.5f;
     bool passed = false;
+    Animator anim;
     float auxHealth2 = 0.25f;
 
     public float CurrentHealth
@@ -51,8 +52,9 @@ public class PlayerController : MonoBehaviour {
         health3.enabled = false;
         health4.enabled = false;
 
-
+        anim = gameObject.GetComponent<Animator>();
         rb2D = gameObject.GetComponent<Rigidbody2D>();
+        anim.Play("Running");
     }
 
     private void OnGUI()
@@ -113,6 +115,9 @@ public class PlayerController : MonoBehaviour {
         ControlsDirection(ref move);
         if(!isGrounded)
         {
+            Debug.Log("playjump");
+            anim.SetBool("grounded", false);
+            anim.Play("jump");
             if (transform.position.y >= maxY)
             {
                 maxReached = true;
@@ -126,15 +131,17 @@ public class PlayerController : MonoBehaviour {
             }
 
         }
+       
         rb2D.transform.position = new Vector2(rb2D.transform.position.x + move.x * speed * Time.deltaTime, rb2D.transform.position.y + move.y * speed * Time.deltaTime);
-       // health.fillAmount -= 0.25f * Time.deltaTime;
+        // health.fillAmount -= 0.25f * Time.deltaTime;
+        anim.SetBool("grounded", true);
     }
 
     
 
     void ControlsDirection(ref Vector2 move)
     {
-
+        move.x = 1;
         switch (direction)
         {
             case 0:
@@ -220,7 +227,12 @@ public class PlayerController : MonoBehaviour {
         {
             GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>().playfx("SFX Hit");
             UpdateHealth(-25f);
-          
+         //   anim.SetBool("hit", true);
+            Debug.Log("playhit");
+            anim.Play("hit");
+           // anim.SetBool("hit", false);
+
+
         }
 
         if (collision.gameObject.tag == "Bottom" && !collision.gameObject.GetComponent<Obstacle>().Touched)
@@ -228,6 +240,10 @@ public class PlayerController : MonoBehaviour {
             maxReached = true;
             GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>().playfx("SFX Hit");
             UpdateHealth(-25f);
+         //   anim.SetBool("hit", true);
+            Debug.Log("playHIT");
+            anim.Play("hit");
+          //  anim.SetBool("hit", false);
         }
     }
 
