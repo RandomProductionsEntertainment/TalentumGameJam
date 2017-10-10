@@ -18,10 +18,17 @@ public class PlayerController : MonoBehaviour {
     private int direction;
     float initialHealth = 100;
     float currentHealth;
-    public Image health;
+    public Image health1;
+    public Image health2;
+    public Image health3;
+    public Image health4;
+    Image health;
     float aux;
     bool newHealth;
     bool addedHealth = false;
+    float auxHealth = 0.5f;
+    bool passed = false;
+    float auxHealth2 = 0.25f;
 
     public float CurrentHealth
     {
@@ -39,13 +46,52 @@ public class PlayerController : MonoBehaviour {
     void Start()
     {
         currentHealth = initialHealth;
+        health = health1;
+        health2.enabled = false;
+        health3.enabled = false;
+        health4.enabled = false;
 
-        
+
         rb2D = gameObject.GetComponent<Rigidbody2D>();
     }
 
     private void OnGUI()
     {
+
+        if (health.fillAmount <= auxHealth2)
+        {
+            health = health4;
+            health4.enabled = true;
+            health3.enabled = false;
+        }
+        else if (health.fillAmount <= auxHealth)
+        {
+            if (!passed)
+            {
+                auxHealth = 1f;
+                health.fillAmount = 1f;
+                passed = true;
+            }
+            if (health.fillAmount <= 0.5f)
+            {
+                auxHealth2 = 1f;
+                health.fillAmount = 1f;
+            }
+
+
+            health = health3;
+            health3.enabled = true;
+            health2.enabled = false;
+        }
+        else if (health.fillAmount <= 0.75f)
+        {
+            health = health2;
+            health2.enabled = true;
+            health1.enabled = false;
+        }
+        else if (health.fillAmount <= 1)
+            health = health1;
+
         if (addedHealth)
         {
             if (health.fillAmount <= currentHealth / 100)
