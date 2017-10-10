@@ -110,6 +110,7 @@ public class PlayerController : MonoBehaviour
         if (health.fillAmount <= 0)
         {
             currentHealth = 0;
+
         }
     }
     // Update is called once per frame
@@ -221,6 +222,8 @@ public class PlayerController : MonoBehaviour
         if (currentHealth <= 0 && !dead)
         {
             dead = true;
+            anim.SetBool("death", true);
+            anim.Play("death");
             aux = 0.65f;
             currentHealth = 1;
         }

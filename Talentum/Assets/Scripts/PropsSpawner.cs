@@ -11,7 +11,7 @@ public class PropsSpawner : MonoBehaviour {
     [SerializeField]
     GameObject[] whatPrefabIs;
     [SerializeField]
-    int maxTimeToSpawn = 3;
+    int maxTimeToSpawn = 5;
     
 
     public int MaxTimeToSpawn
@@ -36,7 +36,7 @@ public class PropsSpawner : MonoBehaviour {
 
         if(UnityEngine.Random.Range(0, 5) == 0)
             Instantiate(whatPrefabIs[UnityEngine.Random.Range(0, whatPrefabIs.Length)], spawner[UnityEngine.Random.Range(0, spawner.Length )].transform.position, Quaternion.identity);
-        Invoke("spawnProps",UnityEngine.Random.Range(2, maxTimeToSpawn));
+        Invoke("spawnProps",UnityEngine.Random.Range(0.5f, maxTimeToSpawn));
     }
 
     // Update is called once per frame
