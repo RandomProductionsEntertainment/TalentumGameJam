@@ -52,9 +52,19 @@ public class deadMenu : MonoBehaviour {
         }
         if(Input.GetKeyDown(KeyCode.Escape) && player.GetComponent<PlayerController>().CurrentHealth > 0)
         {
-            Time.timeScale = 0;
-            pauseMenu.SetActive(true);
+            if(pauseMenu.active)
+            {
+                pauseMenu.SetActive(false);
+                Time.timeScale = 1;
+            }
+            else
+            {
+                Time.timeScale = 0;
+                pauseMenu.SetActive(true);
+            }
+
         }
+
 
     }
 }
