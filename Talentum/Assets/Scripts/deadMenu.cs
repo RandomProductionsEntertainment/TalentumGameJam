@@ -53,7 +53,23 @@ public class deadMenu : MonoBehaviour {
             if(!messageSended)
             {
                 messageSended = true;
-                fuckingMessage.GetComponent<Text>().text = "Only " + timeWithoutDie + "?? \n YOU SUCK!! \n :')";
+                int message = UnityEngine.Random.RandomRange(0, 4);
+                switch(message)
+                {
+                    case 0:
+                        fuckingMessage.GetComponent<Text>().text = "Only " + timeWithoutDie + "?? \n YOU SUCK!! \n :')";
+                        break;
+                    case 1:
+                        fuckingMessage.GetComponent<Text>().text = "Oh god... " + timeWithoutDie + "?? \n MY GRANDMA DOES IT BETTER!! \n :')";
+                        break;
+                    case 2:
+                        fuckingMessage.GetComponent<Text>().text = "I've seen BLINDED people \n playing better than " + timeWithoutDie + " seconds!! \n :')";
+                        break;
+                    case 3:
+                        fuckingMessage.GetComponent<Text>().text = "Really?? " + timeWithoutDie + "?? \n It's time for you to find new friends... \n :')";
+                        break;
+
+                }
             }
 
             Time.timeScale = 0;
